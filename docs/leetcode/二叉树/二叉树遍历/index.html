@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="二叉树遍历 #   对于普通的二叉树遍历大家肯定都觉得这不是很简单吗，递归就解决了，但是对于基础还是要巩固一下。 前序遍历顺序：root节点，left节点，right节点。
+中序遍历顺序：left节点，root节点，right节点。
+后序遍历顺序：left节点，right节点，root节点。
+可以看出前中后序其实就是root节点在哪个位置的遍历顺序。
+另外还有层次遍历： 根据二叉树每一层的顺序来遍历。
+ 二叉树前序遍历 #   递归代码：
+func preorderRecursive(root *TreeNode) []int { var res []int if root == nil { res = append(res, root.Val) res = append(res, preorderRecursive(root.Left)...) res = append(res, preorderRecursive(root.Right)...) } return res }  是不是很简单？但是非递归的代码能一口气写出来吗？非递归遍历需要借助栈来实现： func preorderTraversal(root *TreeNode) []int { if root == nil { return nil } var result []int var stack []*TreeNode for root != nil || len(stack) &gt; 0 { for root !">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="二叉树遍历" />
+<meta property="og:description" content="二叉树遍历 #   对于普通的二叉树遍历大家肯定都觉得这不是很简单吗，递归就解决了，但是对于基础还是要巩固一下。 前序遍历顺序：root节点，left节点，right节点。
+中序遍历顺序：left节点，root节点，right节点。
+后序遍历顺序：left节点，right节点，root节点。
+可以看出前中后序其实就是root节点在哪个位置的遍历顺序。
+另外还有层次遍历： 根据二叉树每一层的顺序来遍历。
+ 二叉树前序遍历 #   递归代码：
+func preorderRecursive(root *TreeNode) []int { var res []int if root == nil { res = append(res, root.Val) res = append(res, preorderRecursive(root.Left)...) res = append(res, preorderRecursive(root.Right)...) } return res }  是不是很简单？但是非递归的代码能一口气写出来吗？非递归遍历需要借助栈来实现： func preorderTraversal(root *TreeNode) []int { if root == nil { return nil } var result []int var stack []*TreeNode for root != nil || len(stack) &gt; 0 { for root !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2021-04-27T22:12:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-27T22:12:00&#43;08:00" />
+
+<title>二叉树遍历 | icestormspirit的博客</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.eacdd8a032b8d8235da73fc619c05c438feb17b4b2c5f1fa0a2dc66f27c2366b.css" integrity="sha256-6s3YoDK42CNdpz/GGcBcQ4/rF7SyxfH6Ci3GbyfCNms=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/zh.search.min.dc44d6a81f0edfa972725f6039da563a0760191b6696e848876dcca4895fb1e7.js" integrity="sha256-3ETWqB8O36lycl9gOdpWOgdgGRtmluhIh23MpIlfsec=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>icestormspirit的博客</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>Leetcode</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>二叉树</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" class=" active">二叉树遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AE%80%E5%8D%95%E9%A2%98/" class="">二叉树简单题</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>链表</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>Redis</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/redis/Redis%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="">Redis学习（一）</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/StormSpirit22/blog" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>二叉树遍历</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#二叉树遍历">二叉树遍历</a>
+          <ul>
+            <li><a href="#二叉树前序遍历">二叉树前序遍历</a></li>
+            <li><a href="#二叉树中序遍历">二叉树中序遍历</a></li>
+            <li><a href="#二叉树后序遍历">二叉树后序遍历</a></li>
+            <li><a href="#层次遍历">层次遍历</a></li>
+            <li><a href="#总结">总结：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="二叉树遍历">
+  二叉树遍历
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e9%81%8d%e5%8e%86">#</a>
+</h2>
+<br/>
+对于普通的二叉树遍历大家肯定都觉得这不是很简单吗，递归就解决了，但是对于基础还是要巩固一下。
+<p>前序遍历顺序：root节点，left节点，right节点。</p>
+<p>中序遍历顺序：left节点，root节点，right节点。</p>
+<p>后序遍历顺序：left节点，right节点，root节点。</p>
+<p>可以看出前中后序其实就是root节点在哪个位置的遍历顺序。</p>
+<p>另外还有层次遍历： 根据二叉树每一层的顺序来遍历。</p>
+<br/>
+<h3 id="二叉树前序遍历">
+  二叉树前序遍历
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e5%89%8d%e5%ba%8f%e9%81%8d%e5%8e%86">#</a>
+</h3>
+<br/>
+<p>递归代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Val</span>)
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>)<span style="color:#f92672">...</span>)
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>)<span style="color:#f92672">...</span>)
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+}
+</code></pre></div><br/>
+是不是很简单？但是非递归的代码能一口气写出来吗？非递归遍历需要借助栈来实现：  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">preorderTraversal</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">stack</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> len(<span style="color:#a6e22e">stack</span>) &gt; <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Value</span>)
+			<span style="color:#a6e22e">stack</span> = append(<span style="color:#a6e22e">stack</span>, <span style="color:#a6e22e">root</span>)
+			<span style="color:#a6e22e">root</span> = <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>
+		}
+		<span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">stack</span>[len(<span style="color:#a6e22e">stack</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+		<span style="color:#a6e22e">stack</span> = <span style="color:#a6e22e">stack</span>[:len(<span style="color:#a6e22e">stack</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+		<span style="color:#a6e22e">root</span> = <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><br/>
+解释：因为是前序遍历，所以先将root值放入数组，然后深度遍历left节点，当left节点为null时，出栈，再将right节点赋值给root。比如有如下二叉树：
+<pre><code>     3
+   /   \
+  9     20
+ / \   /  \
+2   8 15   7
+</code></pre><p>先遍历left节点将3、9、2入栈，此时result数组： [3, 9, 2]，接着stack出栈一个元素，node此时为2节点，root = node.right即为nil，接着下次循环，root = nil，直接出栈一个元素9， root 为节点8，接着循环，result数组就会变成[3, 9, 2, 8]，接着再出栈3， 循环遍历右子树，这样最后result数组的值就是前序遍历的最终结果：[3, 9, 2, 8, 20, 15, 7]。</p>
+<br/>
+<h3 id="二叉树中序遍历">
+  二叉树中序遍历
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%ad%e5%ba%8f%e9%81%8d%e5%8e%86">#</a>
+</h3>
+<br/>
+<p>递归代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">inorderRecursive</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>)<span style="color:#f92672">...</span>)
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Val</span>)
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>)<span style="color:#f92672">...</span>)
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+}
+</code></pre></div><br/>
+<p>非递归代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">inorderTraversal</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">stack</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> len(<span style="color:#a6e22e">stack</span>) &gt; <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#a6e22e">stack</span> = append(<span style="color:#a6e22e">stack</span>, <span style="color:#a6e22e">root</span>)
+			<span style="color:#a6e22e">root</span> = <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>
+		}
+		<span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">stack</span>[len(<span style="color:#a6e22e">stack</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+		<span style="color:#a6e22e">stack</span> = <span style="color:#a6e22e">stack</span>[:len(<span style="color:#a6e22e">stack</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+		<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Value</span>)
+		<span style="color:#a6e22e">root</span> = <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><p>解释：就是把result append的位置换了一下。</p>
+<br/>
+<h3 id="二叉树后序遍历">
+  二叉树后序遍历
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86">#</a>
+</h3>
+<br/>
+<p>递归代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">postorderTraversal</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>)<span style="color:#f92672">...</span>)
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">preorderRecursive</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>)<span style="color:#f92672">...</span>)
+		<span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Val</span>)
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+}
+</code></pre></div><br/>
+<p>非递归代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">postorderTraversal</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">stack</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastVisited</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> len(<span style="color:#a6e22e">stack</span>) &gt; <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#a6e22e">stack</span> = append(<span style="color:#a6e22e">stack</span>, <span style="color:#a6e22e">root</span>)
+			<span style="color:#a6e22e">root</span> = <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>
+		}
+		<span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">stack</span>[len(<span style="color:#a6e22e">stack</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">lastVisited</span> {
+			<span style="color:#a6e22e">stack</span> = <span style="color:#a6e22e">stack</span>[:len(<span style="color:#a6e22e">stack</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Value</span>)
+			<span style="color:#a6e22e">lastVisited</span> = <span style="color:#a6e22e">node</span>
+		} <span style="color:#66d9ef">else</span> {
+			<span style="color:#a6e22e">root</span> = <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span>
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><br/>
+<p>解释：在前序和中序遍历中，遍历的顺序都是左根右，只需要将值加入数组的位置变化一下就行。但是后序遍历需要先访问左右子树的值，然后再访问根的值，但是在访问右子树之前，根节点就已经入栈了，解决方法是先获取栈顶节点但不出栈，看如果这个节点是叶子节点，那么出栈，或者不是叶子节点但它的右子树已经访问过了再出栈，这样访问顺序就是左右根了。所以后序遍历需要添加一个lastVisited的标记位，标记该节点已经遍历过。</p>
+<br/>
+<h3 id="层次遍历">
+  层次遍历
+  <a class="anchor" href="#%e5%b1%82%e6%ac%a1%e9%81%8d%e5%8e%86">#</a>
+</h3>
+<br/>
+<p>递归代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> [][]<span style="color:#66d9ef">int</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">levelOrderRecursive</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) [][]<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#a6e22e">levelOrderRecursiveHelper</span>(<span style="color:#a6e22e">root</span>, <span style="color:#ae81ff">1</span>)
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">levelOrderRecursiveHelper</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>, <span style="color:#a6e22e">level</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span>
+	}
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">result</span>) &lt; <span style="color:#a6e22e">level</span> {
+		<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, []<span style="color:#66d9ef">int</span>{})
+	}
+	<span style="color:#a6e22e">result</span>[<span style="color:#a6e22e">level</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] = append(<span style="color:#a6e22e">result</span>[<span style="color:#a6e22e">level</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Value</span>)
+	<span style="color:#a6e22e">levelOrderRecursiveHelper</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>, <span style="color:#a6e22e">level</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+	<span style="color:#a6e22e">levelOrderRecursiveHelper</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>, <span style="color:#a6e22e">level</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+}
+
+</code></pre></div><br/>
+非递归代码：
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">levelOrderTraversal</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> []<span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">queue</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>
+	<span style="color:#a6e22e">queue</span> = append(<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">root</span>)
+	<span style="color:#66d9ef">for</span> len(<span style="color:#a6e22e">queue</span>) &gt; <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">l</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">queue</span>)
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">l</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">++</span> {
+			<span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">queue</span>[<span style="color:#ae81ff">0</span>]
+			<span style="color:#a6e22e">queue</span> = <span style="color:#a6e22e">queue</span>[<span style="color:#ae81ff">1</span>:]
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Value</span>)
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Left</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+				<span style="color:#a6e22e">queue</span> = append(<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Left</span>)
+			}
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+				<span style="color:#a6e22e">queue</span> = append(<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Right</span>)
+			}
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><br/>
+解释:  
+层次遍历递归解法借助了level参数来判断递归到哪一层。非递归解法就比较常规了，用队列来解决。本质上都是bfs算法。  
+<br/>
+<br/>
+<h3 id="总结">
+  总结：
+  <a class="anchor" href="#%e6%80%bb%e7%bb%93">#</a>
+</h3>
+<p>虽然二叉树遍历是最基础的，但是想完全掌握递归和非递归的解法还是需要一些时间的，大家都学废了吗？</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/content/docs/leetcode/%e4%ba%8c%e5%8f%89%e6%a0%91/%e4%ba%8c%e5%8f%89%e6%a0%91%e9%81%8d%e5%8e%86.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>编辑本页</span>
+    </a>
+  </div>
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#二叉树遍历">二叉树遍历</a>
+          <ul>
+            <li><a href="#二叉树前序遍历">二叉树前序遍历</a></li>
+            <li><a href="#二叉树中序遍历">二叉树中序遍历</a></li>
+            <li><a href="#二叉树后序遍历">二叉树后序遍历</a></li>
+            <li><a href="#层次遍历">层次遍历</a></li>
+            <li><a href="#总结">总结：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

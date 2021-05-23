@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on icestormspirit的博客</title>
+    <link>https://StormSpirit22.github.io/docs/redis/</link>
+    <description>Recent content in Redis on icestormspirit的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://StormSpirit22.github.io/docs/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis学习（一）</title>
+      <link>https://StormSpirit22.github.io/docs/redis/Redis%E5%AD%A6%E4%B9%A0%E4%B8%80/</link>
+      <pubDate>Sat, 22 May 2021 17:08:41 +0800</pubDate>
+      
+      <guid>https://StormSpirit22.github.io/docs/redis/Redis%E5%AD%A6%E4%B9%A0%E4%B8%80/</guid>
+      <description>Redis 学习（一） #  redis想必大家都用过，但是一些底层实现的知识点还是需要好好看看，这篇博客就redis的数据结构为核心，总结网上的一些文章，当做学习笔记记录下来。侵删。
+一、Redis是什么？ #  Redis是一个开源的，基于内存的数据结构存储，可用作于数据库、缓存、消息中间件。redis的常用命令可以去查阅官网，这里不做介绍。
+二、为什么要用Redis #  Redis是基于内存的，用于缓存的一种技术。而且通常是以kv的方式进行存储的，有人就问了，为啥不用数据结构的map呢？map不也差不多？下面是几点原因：
+  数据结构的map是本地缓存，如果想用分布式缓存则做不到。多台机器缓存不具有一致性。
+  map是基于应用程序的，如果一个map特别大，那么运行起来会非常慢甚至程序会崩溃。而redis作为一个独立的缓存中间件，与应用程序解耦。
+  redis是专业做缓存的，不需要程序员去专门进行内存管理，而且可以将缓存数据存储到硬盘里，并且可以恢复，并且提供了多种数据结构及缓存过期等机制。
+  三、Redis的数据结构 #  Redis 有 5 种基础数据结构，它们分别是：string(字符串)、list(链表)、hash(哈希表)、set(集合) 和 zset(有序集合)。要说明的是，这些数据结构表示的是redis key-value中“value”的类型，redis的key都是字符串。而redis底层并不是直接使用这些类型，而是构造了一个redisObject的类型。也就是说，我们在redis里创建一个key-value，会至少创建出两个对象，key对象和value对象。redisObject数据结构：
+typedef struct redisObject{ // 对象的类型 unsigned type 4:; // 对象的编码格式 unsigned encoding:4; // 指向底层实现数据结构的指针 void * ptr; //..... }robj;  （上面这张图现在看不懂没关系，等下面先介绍了几种数据结构再回过头来看就懂了。）
+简单来说就是Redis对key-value封装成对象，key是一个对象，value也是一个对象。每个对象都有type(类型)、encoding(编码)、ptr(指向底层数据结构的指针)来表示。
+下面分别就这几种类型的底层实现介绍一下。
+1、SDS #  redis是用c写的，但是redis的string并不是c里的string直接拿来用的。redis的string类型是一个叫做**简单动态字符串(Simple dynamic string,SDS)**的数据结构，源码如下：
+struct sdshdr{ // 字节数组，用于保存字符串 char buf[]; // 记录buf数组中已使用的字节数量，也是字符串的长度 int len; // 记录buf数组未使用的字节数量 int free; } 可以看到sds的类型如图所示：</description>
+    </item>
+    
+  </channel>
+</rss>

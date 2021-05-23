@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客介绍 on icestormspirit的博客</title>
+    <link>https://StormSpirit22.github.io/</link>
+    <description>Recent content in 博客介绍 on icestormspirit的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 22 May 2021 17:22:00 +0800</lastBuildDate><atom:link href="https://StormSpirit22.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>二叉树遍历</title>
+      <link>https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/</link>
+      <pubDate>Tue, 27 Apr 2021 22:12:00 +0800</pubDate>
+      
+      <guid>https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/</guid>
+      <description>二叉树遍历 #   对于普通的二叉树遍历大家肯定都觉得这不是很简单吗，递归就解决了，但是对于基础还是要巩固一下。 前序遍历顺序：root节点，left节点，right节点。
+中序遍历顺序：left节点，root节点，right节点。
+后序遍历顺序：left节点，right节点，root节点。
+可以看出前中后序其实就是root节点在哪个位置的遍历顺序。
+另外还有层次遍历： 根据二叉树每一层的顺序来遍历。
+ 二叉树前序遍历 #   递归代码：
+func preorderRecursive(root *TreeNode) []int { var res []int if root == nil { res = append(res, root.Val) res = append(res, preorderRecursive(root.Left)...) res = append(res, preorderRecursive(root.Right)...) } return res }  是不是很简单？但是非递归的代码能一口气写出来吗？非递归遍历需要借助栈来实现： func preorderTraversal(root *TreeNode) []int { if root == nil { return nil } var result []int var stack []*TreeNode for root != nil || len(stack) &amp;gt; 0 { for root !</description>
+    </item>
+    
+    <item>
+      <title>二叉树简单题</title>
+      <link>https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AE%80%E5%8D%95%E9%A2%98/</link>
+      <pubDate>Sat, 22 May 2021 15:18:39 +0800</pubDate>
+      
+      <guid>https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AE%80%E5%8D%95%E9%A2%98/</guid>
+      <description>二叉树简单题 #   上一篇文章里已经介绍了各种二叉树的遍历方式，可以看到对于二叉树来说，递归是最简洁并且好理解的遍历方式，所以对于二叉树的题，我们首先要想能不能用递归解决。而对于递归，我们不需要去考虑这个函数是否能实现我们要的功能，而是要相信函数一定能实现我们的功能，然后定义base case即可。学以致用，现在先来看看leetcode上二叉树的简单题，练练手。下面会先介绍这些题目的思路，ac代码集中放到最后。建议读者先自己去做一下想一想，然后手写代码，如果直接先看代码，没有经过自己的思考，第二次碰到可能还是不会做。
+下面选取了一些题目，虽然是easy难度，但是如果是第一次做也是不容易能马上写出来的，所以还是要多刷题！^_^
+ 本文要介绍的题目有：
+ 二叉树的最大深度
+ 对称的二叉树
+ 二叉树的镜像
+ 二叉树的最近公共祖先
+ 平衡二叉树
+ 下面我们一个个来分析。
+ 二叉树的最大深度
+ 输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。
+ 解析：
+这题比较简单，直接递归 max(left, right) + 1即可。
+ 对称的二叉树
+ 请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+ 解析：
+要判断是不是对称二叉树，并不是简单地递归去判断左右子树的值是否相等，比如第一个例子，到第二层的时候就不是判断左右子树的值相等了，而是需要判断 left.left.val == right.right.val 和 left.right.val == right.left.val。那这怎么做呢？我们可以用一个辅助函数，参数值是 left, right， 每次只要判断 left.val 是否等于 right.val ，然后再将 left.left 和 right.right， left.right 和 right.left 递归就好了。
+ 二叉树的镜像
+ 请完成一个函数，输入一个二叉树，该函数输出它的镜像。
+ 解析：
+这题就是使用前序遍历，先将root左右子树节点交换，然后再继续遍历。
+ 二叉树的最近公共祖先
+ 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</description>
+    </item>
+    
+    <item>
+      <title>Redis学习（一）</title>
+      <link>https://StormSpirit22.github.io/docs/redis/Redis%E5%AD%A6%E4%B9%A0%E4%B8%80/</link>
+      <pubDate>Sat, 22 May 2021 17:08:41 +0800</pubDate>
+      
+      <guid>https://StormSpirit22.github.io/docs/redis/Redis%E5%AD%A6%E4%B9%A0%E4%B8%80/</guid>
+      <description>Redis 学习（一） #  redis想必大家都用过，但是一些底层实现的知识点还是需要好好看看，这篇博客就redis的数据结构为核心，总结网上的一些文章，当做学习笔记记录下来。侵删。
+一、Redis是什么？ #  Redis是一个开源的，基于内存的数据结构存储，可用作于数据库、缓存、消息中间件。redis的常用命令可以去查阅官网，这里不做介绍。
+二、为什么要用Redis #  Redis是基于内存的，用于缓存的一种技术。而且通常是以kv的方式进行存储的，有人就问了，为啥不用数据结构的map呢？map不也差不多？下面是几点原因：
+  数据结构的map是本地缓存，如果想用分布式缓存则做不到。多台机器缓存不具有一致性。
+  map是基于应用程序的，如果一个map特别大，那么运行起来会非常慢甚至程序会崩溃。而redis作为一个独立的缓存中间件，与应用程序解耦。
+  redis是专业做缓存的，不需要程序员去专门进行内存管理，而且可以将缓存数据存储到硬盘里，并且可以恢复，并且提供了多种数据结构及缓存过期等机制。
+  三、Redis的数据结构 #  Redis 有 5 种基础数据结构，它们分别是：string(字符串)、list(链表)、hash(哈希表)、set(集合) 和 zset(有序集合)。要说明的是，这些数据结构表示的是redis key-value中“value”的类型，redis的key都是字符串。而redis底层并不是直接使用这些类型，而是构造了一个redisObject的类型。也就是说，我们在redis里创建一个key-value，会至少创建出两个对象，key对象和value对象。redisObject数据结构：
+typedef struct redisObject{ // 对象的类型 unsigned type 4:; // 对象的编码格式 unsigned encoding:4; // 指向底层实现数据结构的指针 void * ptr; //..... }robj;  （上面这张图现在看不懂没关系，等下面先介绍了几种数据结构再回过头来看就懂了。）
+简单来说就是Redis对key-value封装成对象，key是一个对象，value也是一个对象。每个对象都有type(类型)、encoding(编码)、ptr(指向底层数据结构的指针)来表示。
+下面分别就这几种类型的底层实现介绍一下。
+1、SDS #  redis是用c写的，但是redis的string并不是c里的string直接拿来用的。redis的string类型是一个叫做**简单动态字符串(Simple dynamic string,SDS)**的数据结构，源码如下：
+struct sdshdr{ // 字节数组，用于保存字符串 char buf[]; // 记录buf数组中已使用的字节数量，也是字符串的长度 int len; // 记录buf数组未使用的字节数量 int free; } 可以看到sds的类型如图所示：</description>
+    </item>
+    
+  </channel>
+</rss>
