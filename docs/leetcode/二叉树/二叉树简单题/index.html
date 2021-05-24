@@ -60,7 +60,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.eacdd8a032b8d8235da73fc619c05c438feb17b4b2c5f1fa0a2dc66f27c2366b.css" integrity="sha256-6s3YoDK42CNdpz/GGcBcQ4/rF7SyxfH6Ci3GbyfCNms=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.2b5485a745b83b0f59a564ba24cdc1e68b5451255045607617fda493ef08295c.js" integrity="sha256-K1SFp0W4Ow9ZpWS6JM3B5otUUSVQRWB2F/2kk&#43;8IKVw=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.1ff56b3dfb6c21aabda6fef425eee9c61be47b9df9f7d397536961f444a66577.js" integrity="sha256-H/VrPftsIaq9pv70Je7pxhvke53599OXU2lh9ESmZXc=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -290,7 +290,11 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#二叉树简单题">二叉树简单题</a></li>
-        <li><a href="#代码">代码</a></li>
+        <li><a href="#代码">代码</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -367,7 +371,10 @@ https://github.com/alex-shpak/hugo-book
   代码
   <a class="anchor" href="#%e4%bb%a3%e7%a0%81">#</a>
 </h2>
-<p><strong>二叉树的最大深度</strong></p>
+<h4 id="二叉树的最大深度">
+  二叉树的最大深度
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%a4%a7%e6%b7%b1%e5%ba%a6">#</a>
+</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">maxDepth</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#66d9ef">int</span> {
     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
@@ -382,7 +389,10 @@ https://github.com/alex-shpak/hugo-book
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>
 }
 </code></pre></div><br/>
-<p><strong>对称的二叉树</strong></p>
+<h4 id="对称的二叉树">
+  对称的二叉树
+  <a class="anchor" href="#%e5%af%b9%e7%a7%b0%e7%9a%84%e4%ba%8c%e5%8f%89%e6%a0%91">#</a>
+</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">isSymmetric</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#66d9ef">bool</span> {
 	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
 		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
@@ -400,9 +410,12 @@ https://github.com/alex-shpak/hugo-book
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">helper</span>(<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">Left</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Right</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">helper</span>(<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">Right</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Left</span>)
 }
 </code></pre></div><br/>
-<p><strong>二叉树的镜像</strong></p>
+<h4 id="二叉树的镜像">
+  二叉树的镜像
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e9%95%9c%e5%83%8f">#</a>
+</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mirrorTree</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span> {
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
+  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
 		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>
   }
   <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> = <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>
@@ -411,9 +424,12 @@ https://github.com/alex-shpak/hugo-book
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>
 }
 </code></pre></div><br/>
-<p><strong>二叉树的最近公共祖先</strong></p>
+<h4 id="二叉树的最近公共祖先">
+  二叉树的最近公共祖先
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e8%bf%91%e5%85%ac%e5%85%b1%e7%a5%96%e5%85%88">#</a>
+</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">lowestCommonAncestor</span>(<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">p</span>, <span style="color:#a6e22e">q</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span> {
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
 		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
 	}
 	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">q</span> {
@@ -430,7 +446,10 @@ https://github.com/alex-shpak/hugo-book
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">left</span>
 }
 </code></pre></div><br/>
-<p><strong>平衡二叉树</strong></p>
+<h4 id="平衡二叉树">
+  平衡二叉树
+  <a class="anchor" href="#%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91">#</a>
+</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">isBalanced</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#66d9ef">bool</span> {
     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
@@ -501,7 +520,11 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#二叉树简单题">二叉树简单题</a></li>
-        <li><a href="#代码">代码</a></li>
+        <li><a href="#代码">代码</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
