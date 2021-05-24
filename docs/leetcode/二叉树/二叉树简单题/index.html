@@ -60,7 +60,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.eacdd8a032b8d8235da73fc619c05c438feb17b4b2c5f1fa0a2dc66f27c2366b.css" integrity="sha256-6s3YoDK42CNdpz/GGcBcQ4/rF7SyxfH6Ci3GbyfCNms=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.dc44d6a81f0edfa972725f6039da563a0760191b6696e848876dcca4895fb1e7.js" integrity="sha256-3ETWqB8O36lycl9gOdpWOgdgGRtmluhIh23MpIlfsec=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.2b5485a745b83b0f59a564ba24cdc1e68b5451255045607617fda493ef08295c.js" integrity="sha256-K1SFp0W4Ow9ZpWS6JM3B5otUUSVQRWB2F/2kk&#43;8IKVw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -404,10 +404,8 @@ https://github.com/alex-shpak/hugo-book
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mirrorTree</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span> {
     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
 		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>
-	}
-	<span style="color:#a6e22e">tmp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>
-	<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span> = <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>
-	<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> = <span style="color:#a6e22e">tmp</span>
+  }
+  <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> = <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>, <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>
 	<span style="color:#a6e22e">mirrorTree</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>)
 	<span style="color:#a6e22e">mirrorTree</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>)
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>
