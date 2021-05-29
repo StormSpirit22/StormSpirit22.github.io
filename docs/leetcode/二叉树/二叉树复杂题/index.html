@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="二叉树复杂题 #  好了，二叉树的简单题、中等题我们都做过了一部分，基本的思路都了解了，这里看一下leetcode上的二叉树的复杂题，放心，只有一题。
+本文要介绍的题目有：
+ 二叉树的序列化与反序列化
+下面我们来分析。
+ 题目解析 #  二叉树的序列化与反序列化 #   序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。
+请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
+提示: 输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。
+ 解析：
+这道题更类似于设计题，可以先想想序列化怎么做，序列化我们之前在重复子树中已经做过类似的，这次是把整棵树都序列化，也大同小异。
+ 先介绍递归的方法，使用前序遍历，我们假定如果节点为nil，则用“#”来代替，节点之间用“,”来分隔。我们需要一个变量data，当root == nil时，data &#43;= &ldquo;#&rdquo; &#43; &ldquo;,&quot;，否则 data &#43;= root.Val，然后递归root.Left和root.Right，这样序列化就完成了。比如题目中的例子，root = [1,2,3,null,null,4,5]，序列化之后应该返回 “1,2,#,#,3,4,#,#,5,#,# ” 这样才对。
+ 接着介绍反序列化，同样，我们需要声明一个全局变量nodes，作为strings.Split(data, &ldquo;,&quot;)的接收者，即将每个节点放到数组中，然后拿出数组第一个值，并在数组中去掉这个值，然后以这个值初始化root节点，接着使用nodes去递归赋值root.Left和root.Right即可。后序遍历也是可以的，大家可以自己去试试，但是中序遍历不行，因为中序遍历的序列化无法确定root值是哪个。
+ 再介绍迭代的方法，也就是层次遍历，层次遍历就是借助队列来实现，序列化比较简单，这里跳过。要注意的是反序列化也需要借助队列，出队一个元素，需要再入队后面两个元素，即left，right。
+ 代码 #  二叉树的序列化与反序列化（前序遍历） #  type Codec struct { } func Constructor() Codec { c := Codec{} return c } // Serializes a tree to a single string.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="二叉树复杂题" />
+<meta property="og:description" content="二叉树复杂题 #  好了，二叉树的简单题、中等题我们都做过了一部分，基本的思路都了解了，这里看一下leetcode上的二叉树的复杂题，放心，只有一题。
+本文要介绍的题目有：
+ 二叉树的序列化与反序列化
+下面我们来分析。
+ 题目解析 #  二叉树的序列化与反序列化 #   序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。
+请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
+提示: 输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。
+ 解析：
+这道题更类似于设计题，可以先想想序列化怎么做，序列化我们之前在重复子树中已经做过类似的，这次是把整棵树都序列化，也大同小异。
+ 先介绍递归的方法，使用前序遍历，我们假定如果节点为nil，则用“#”来代替，节点之间用“,”来分隔。我们需要一个变量data，当root == nil时，data &#43;= &ldquo;#&rdquo; &#43; &ldquo;,&quot;，否则 data &#43;= root.Val，然后递归root.Left和root.Right，这样序列化就完成了。比如题目中的例子，root = [1,2,3,null,null,4,5]，序列化之后应该返回 “1,2,#,#,3,4,#,#,5,#,# ” 这样才对。
+ 接着介绍反序列化，同样，我们需要声明一个全局变量nodes，作为strings.Split(data, &ldquo;,&quot;)的接收者，即将每个节点放到数组中，然后拿出数组第一个值，并在数组中去掉这个值，然后以这个值初始化root节点，接着使用nodes去递归赋值root.Left和root.Right即可。后序遍历也是可以的，大家可以自己去试试，但是中序遍历不行，因为中序遍历的序列化无法确定root值是哪个。
+ 再介绍迭代的方法，也就是层次遍历，层次遍历就是借助队列来实现，序列化比较简单，这里跳过。要注意的是反序列化也需要借助队列，出队一个元素，需要再入队后面两个元素，即left，right。
+ 代码 #  二叉树的序列化与反序列化（前序遍历） #  type Codec struct { } func Constructor() Codec { c := Codec{} return c } // Serializes a tree to a single string." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%A4%8D%E6%9D%82%E9%A2%98/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2021-05-29T19:19:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-05-29T19:19:00&#43;08:00" />
+
+<title>二叉树复杂题 | icestormspirit的博客</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.eacdd8a032b8d8235da73fc619c05c438feb17b4b2c5f1fa0a2dc66f27c2366b.css" integrity="sha256-6s3YoDK42CNdpz/GGcBcQ4/rF7SyxfH6Ci3GbyfCNms=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/zh.search.min.1253f086b7a4d58073d0421f12919e3f9a171d56f0d2ec6e1d7f5898fc1e7406.js" integrity="sha256-ElPwhrek1YBz0EIfEpGeP5oXHVbw0uxuHX9YmPwedAY=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>icestormspirit的博客</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>Leetcode</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>二叉树</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" class="">二叉树遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AE%80%E5%8D%95%E9%A2%98/" class="">二叉树简单题</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%AD%89%E9%A2%98/" class="">二叉树中等题</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%A4%8D%E6%9D%82%E9%A2%98/" class=" active">二叉树复杂题</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>链表</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/leetcode/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84/" class="">数组</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>Redis</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://StormSpirit22.github.io/docs/redis/Redis%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="">Redis学习（一）</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/StormSpirit22/blog" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>二叉树复杂题</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#二叉树复杂题">二叉树复杂题</a>
+      <ul>
+        <li><a href="#题目解析">题目解析</a>
+          <ul>
+            <li><a href="#二叉树的序列化与反序列化">二叉树的序列化与反序列化</a></li>
+          </ul>
+        </li>
+        <li><a href="#代码">代码</a>
+          <ul>
+            <li><a href="#二叉树的序列化与反序列化前序遍历">二叉树的序列化与反序列化（前序遍历）</a></li>
+            <li><a href="#二叉树的序列化与反序列化层次遍历">二叉树的序列化与反序列化（层次遍历）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="二叉树复杂题">
+  二叉树复杂题
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e5%a4%8d%e6%9d%82%e9%a2%98">#</a>
+</h1>
+<br>
+<p>好了，二叉树的简单题、中等题我们都做过了一部分，基本的思路都了解了，这里看一下leetcode上的二叉树的复杂题，放心，只有一题。</p>
+<br>
+<p>本文要介绍的题目有：</p>
+<p>
+  <a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/">二叉树的序列化与反序列化</a></p>
+<p>下面我们来分析。</p>
+<br/>
+<h2 id="题目解析">
+  题目解析
+  <a class="anchor" href="#%e9%a2%98%e7%9b%ae%e8%a7%a3%e6%9e%90">#</a>
+</h2>
+<h3 id="二叉树的序列化与反序列化">
+  二叉树的序列化与反序列化
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%ba%8f%e5%88%97%e5%8c%96%e4%b8%8e%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96">#</a>
+</h3>
+<blockquote>
+<p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
+<p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
+<p>提示: 输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
+</blockquote>
+<p>解析：</p>
+<p>这道题更类似于设计题，可以先想想序列化怎么做，序列化我们之前在重复子树中已经做过类似的，这次是把整棵树都序列化，也大同小异。</p>
+<p>    先介绍递归的方法，使用前序遍历，我们假定如果节点为nil，则用“#”来代替，节点之间用“,”来分隔。我们需要一个变量data，当root == nil时，data += &ldquo;#&rdquo; + &ldquo;,&quot;，否则 data += root.Val，然后递归root.Left和root.Right，这样序列化就完成了。比如题目中的例子，root = [1,2,3,null,null,4,5]，序列化之后应该返回 “1,2,#,#,3,4,#,#,5,#,# ” 这样才对。</p>
+<p>    接着介绍反序列化，同样，我们需要声明一个全局变量nodes，作为strings.Split(data, &ldquo;,&quot;)的接收者，即将每个节点放到数组中，然后拿出数组第一个值，并在数组中去掉这个值，然后以这个值初始化root节点，接着使用nodes去递归赋值root.Left和root.Right即可。后序遍历也是可以的，大家可以自己去试试，但是中序遍历不行，因为中序遍历的序列化无法确定root值是哪个。</p>
+<p>    再介绍迭代的方法，也就是层次遍历，层次遍历就是借助队列来实现，序列化比较简单，这里跳过。要注意的是反序列化也需要借助队列，出队一个元素，需要再入队后面两个元素，即left，right。</p>
+<br/>
+<h2 id="代码">
+  代码
+  <a class="anchor" href="#%e4%bb%a3%e7%a0%81">#</a>
+</h2>
+<h3 id="二叉树的序列化与反序列化前序遍历">
+  二叉树的序列化与反序列化（前序遍历）
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%ba%8f%e5%88%97%e5%8c%96%e4%b8%8e%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e5%89%8d%e5%ba%8f%e9%81%8d%e5%8e%86">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Codec</span> <span style="color:#66d9ef">struct</span> {
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Constructor</span>() <span style="color:#a6e22e">Codec</span> {
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Codec</span>{}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">c</span>
+}
+
+<span style="color:#75715e">// Serializes a tree to a single string.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Codec</span>) <span style="color:#a6e22e">serialize</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#66d9ef">string</span> {
+	<span style="color:#a6e22e">data</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">serializeHelper</span>(<span style="color:#a6e22e">root</span>)
+	<span style="color:#a6e22e">data</span> = <span style="color:#a6e22e">data</span>[:len(<span style="color:#a6e22e">data</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">serializeHelper</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">data</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;#&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>
+	}
+	<span style="color:#a6e22e">data</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Itoa</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Val</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span>
+	<span style="color:#a6e22e">data</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">serializeHelper</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span>)
+	<span style="color:#a6e22e">data</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">serializeHelper</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span>)
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>
+}
+
+<span style="color:#75715e">//需要一个全局变量nodes，如果helper是通过传值来进行nodes的传递，那么回溯时nodes应该被去掉的值没有被去掉，
+</span><span style="color:#75715e">//而全局变量可以避免这个问题，或者在Codec结构体里声明一个nodes变量，helper作为成员函数也是可以的。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nodes</span> []<span style="color:#66d9ef">string</span>
+<span style="color:#75715e">// Deserializes your encoded data to tree.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Codec</span>) <span style="color:#a6e22e">deserialize</span>(<span style="color:#a6e22e">data</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span> {
+	<span style="color:#a6e22e">nodes</span> = <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;,&#34;</span>)
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">deserializeHelper</span>()
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">deserializeHelper</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span> {
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">nodes</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nodes</span>[<span style="color:#ae81ff">0</span>]
+	<span style="color:#a6e22e">nodes</span> = <span style="color:#a6e22e">nodes</span>[<span style="color:#ae81ff">1</span>:]
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;#&#34;</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	}
+	<span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Atoi</span>(<span style="color:#a6e22e">v</span>)
+	<span style="color:#a6e22e">root</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">TreeNode</span>{<span style="color:#a6e22e">Val</span>: <span style="color:#a6e22e">num</span>}
+	<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Left</span> = <span style="color:#a6e22e">deserializeHelper</span>()
+	<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Right</span> = <span style="color:#a6e22e">deserializeHelper</span>()
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>
+}
+
+</code></pre></div><br/>
+<h3 id="二叉树的序列化与反序列化层次遍历">
+  二叉树的序列化与反序列化（层次遍历）
+  <a class="anchor" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%ba%8f%e5%88%97%e5%8c%96%e4%b8%8e%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e5%b1%82%e6%ac%a1%e9%81%8d%e5%8e%86">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Codec</span> <span style="color:#66d9ef">struct</span> {
+    
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Constructor</span>() <span style="color:#a6e22e">Codec</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Codec</span>{}
+}
+
+<span style="color:#75715e">// Serializes a tree to a single string.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Codec</span>) <span style="color:#a6e22e">serialize</span>(<span style="color:#a6e22e">root</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>) <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">root</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+    }
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">queue</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">New</span>()
+    <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">PushBack</span>(<span style="color:#a6e22e">root</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">Len</span>() &gt; <span style="color:#ae81ff">0</span> {
+        <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">Len</span>()
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+            <span style="color:#a6e22e">tmp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">Front</span>()
+            <span style="color:#a6e22e">tmpNode</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tmp</span>.<span style="color:#a6e22e">Value</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>)
+            <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">Remove</span>(<span style="color:#a6e22e">tmp</span>)
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">tmpNode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">res</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;#,&#34;</span>
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">res</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Itoa</span>(<span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Val</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span>
+                <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">PushBack</span>(<span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Left</span>)
+                <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">PushBack</span>(<span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Right</span>)
+            }
+        }
+    }
+    <span style="color:#a6e22e">res</span> = <span style="color:#a6e22e">res</span>[:len(<span style="color:#a6e22e">res</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+}
+
+<span style="color:#75715e">// Deserializes your encoded data to tree.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Codec</span>) <span style="color:#a6e22e">deserialize</span>(<span style="color:#a6e22e">data</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span> {   
+    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">data</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+    }
+    <span style="color:#a6e22e">str</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;,&#34;</span>)
+    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">str</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+    }
+    <span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Atoi</span>(<span style="color:#a6e22e">str</span>[<span style="color:#ae81ff">0</span>])
+    <span style="color:#a6e22e">root</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">TreeNode</span>{<span style="color:#a6e22e">Val</span>: <span style="color:#a6e22e">t</span>}
+    <span style="color:#a6e22e">queue</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">New</span>()
+    <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">PushBack</span>(<span style="color:#a6e22e">root</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">str</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">tmp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">Front</span>()
+        <span style="color:#a6e22e">tmpNode</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tmp</span>.<span style="color:#a6e22e">Value</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">TreeNode</span>)
+        <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">Remove</span>(<span style="color:#a6e22e">tmp</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;#&#34;</span> {
+            <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Atoi</span>(<span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">i</span>])
+            <span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Left</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">TreeNode</span>{<span style="color:#a6e22e">Val</span>: <span style="color:#a6e22e">a</span>}
+            <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">PushBack</span>(<span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Left</span>)
+        }
+        <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;#&#34;</span> {
+            <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Atoi</span>(<span style="color:#a6e22e">str</span>[<span style="color:#a6e22e">i</span>])
+            <span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Right</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">TreeNode</span>{<span style="color:#a6e22e">Val</span>: <span style="color:#a6e22e">a</span>}
+            <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">PushBack</span>(<span style="color:#a6e22e">tmpNode</span>.<span style="color:#a6e22e">Right</span>)
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>
+}
+</code></pre></div><br/>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#二叉树复杂题">二叉树复杂题</a>
+      <ul>
+        <li><a href="#题目解析">题目解析</a>
+          <ul>
+            <li><a href="#二叉树的序列化与反序列化">二叉树的序列化与反序列化</a></li>
+          </ul>
+        </li>
+        <li><a href="#代码">代码</a>
+          <ul>
+            <li><a href="#二叉树的序列化与反序列化前序遍历">二叉树的序列化与反序列化（前序遍历）</a></li>
+            <li><a href="#二叉树的序列化与反序列化层次遍历">二叉树的序列化与反序列化（层次遍历）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

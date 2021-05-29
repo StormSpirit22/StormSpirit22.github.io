@@ -6,5 +6,14 @@
     <description>Recent content in Leetcode on icestormspirit的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language><atom:link href="https://StormSpirit22.github.io/docs/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://StormSpirit22.github.io/docs/leetcode/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://StormSpirit22.github.io/docs/leetcode/%E6%95%B0%E7%BB%84/%E6%95%B0%E7%BB%84/</guid>
+      <description>数组 #    爱吃香蕉的珂珂：可以先用暴力循环，从1开始到数组最大值逐个遍历，如果需要时间小于h则返回。进一步向想是不是可以用二分法，l=1，r=max(array)+1，如果小于h则记录当时的mid值。  在 D 天内送达包裹的能力：同上，不过l=max(array)，r=sum(array)。  </description>
+    </item>
+    
   </channel>
 </rss>
